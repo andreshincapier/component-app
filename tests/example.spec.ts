@@ -155,12 +155,6 @@ export const validateRow = (row: Excel.Row | any[], serviceName: string, number:
   }
 }
 
-test("Read xlsx data info and store in objects", async ({ request }) => {
-  const workbook = new Excel.Workbook();
-  await workbook.xlsx.readFile("resources/Northline_StandardTemplate.xlsx");
-  const response = extractor(workbook);
-});
-
 const extractor = (workbook: Excel.Workbook): ExtractorResponse => {
   let response: ExtractorResponse = {
     status: Status.VALID,
@@ -201,5 +195,11 @@ const extractor = (workbook: Excel.Workbook): ExtractorResponse => {
   });
   return response;
 };
+
+test("Read xlsx data info and store in objects", async ({ request }) => {
+  const workbook = new Excel.Workbook();
+  await workbook.xlsx.readFile("resources/Northline_StandardTemplate.xlsx");
+  const response = extractor(workbook);
+});
 
 export default extractor;
